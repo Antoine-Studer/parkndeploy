@@ -20,7 +20,7 @@ jobs:
         with:
           dotnet-version: '9.0.x'
       - name: Publish Backend
-        run: dotnet publish -c Release -o ./publish-folder
+        run: dotnet publish ./ParkNDeploy.Api/ParkNDeploy.Api.csproj -c Release -o ./publish-folder
         working-directory: ./backend
       - name: Upload Backend Artifact
         uses: actions/upload-artifact@v4
@@ -45,6 +45,12 @@ jobs:
         working-directory: ./frontend
         env:
           VITE_APP_VERSION: ${{ github.ref_name }} 
+
+      - name: Upload Frontend Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-app
+          path: ./frontend/dist
 
   deploy_infrastructure:
     needs: [ci_backend, ci_frontend]
