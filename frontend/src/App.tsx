@@ -8,6 +8,9 @@ import { LoadingSpinner } from "@/components/ui/loadingspinner";
 import ParkingListFilters from "@/components/ParkingList/ParkingListFilters";
 import { useParkingSearchStore } from "@/stores/parkingSearchStore";
 
+
+const appVersion = import.meta.env.VITE_APP_VERSION || "dev-mode";
+
 function App() {
   const { parkingName } = useParkingSearchStore();
 

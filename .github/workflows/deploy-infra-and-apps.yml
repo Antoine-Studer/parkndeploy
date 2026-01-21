@@ -33,20 +33,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' 
+
       - name: Build Frontend
         run: |
           npm install
-          # On injecte la version du tag dans une variable d'environnement reconnue par Vite/React
           npm run build
         working-directory: ./frontend
         env:
-          VITE_APP_VERSION: ${{ github.ref_name }}
-          
-      - name: Upload Frontend Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-app
-          path: ./frontend/dist
+          VITE_APP_VERSION: ${{ github.ref_name }} 
 
   deploy_infrastructure:
     needs: [ci_backend, ci_frontend]
