@@ -32,11 +32,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Build Frontend
         run: |
           npm install
+          # On injecte la version du tag dans une variable d'environnement reconnue par Vite/React
           npm run build
         working-directory: ./frontend
+        env:
+          VITE_APP_VERSION: ${{ github.ref_name }}
+          
       - name: Upload Frontend Artifact
         uses: actions/upload-artifact@v4
         with:
