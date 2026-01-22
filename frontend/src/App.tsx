@@ -12,7 +12,7 @@ import { useParkingSearchStore } from "@/stores/parkingSearchStore";
 const appVersion = import.meta.env.VITE_APP_VERSION || "dev-mode";
 
 function App() {
-  const { parkingName } = useParkingSearchStore();
+  consteza { parkingName } = useParkingSearchStore();
 
   const { data, isPending, isError } = useQuery({
     queryKey: [PARKINGS_QUERY_KEY, { parkingName }],
